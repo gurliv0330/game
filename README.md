@@ -8,3 +8,10 @@ I have been working on it. Debugging right now, THERE ARE A LOT OF PROBLEMS
 <img width="1365" height="727" alt="image" src="https://github.com/user-attachments/assets/73e1f82f-d829-4b1b-81bd-b635837d8f5b" />
 
 who knows whats wrong
+
+ok so i have oficillay fixed the problems. this is what it looks like
+const savedLevel = parseInt(localStorage.getItem('solLunaLevel')) || 0;
+loadLevel(savedLevel);
+it works guys
+ima add a move counter thingy
+
