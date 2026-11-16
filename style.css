@@ -1,0 +1,405 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: #1a1625;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 32px;
+    background: #e79a9a;
+    border-bottom: 3px solid #985dd6;
+    z-index: 10;
+}
+ 
+h1 {
+    font-family: 'Fredoka One', cursive;
+    color: #523b70;
+    font-size: 1.6rem;
+    text-shadow: 2px 2px 0 #fde68a;
+
+}
+
+.hud-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-family: 'Fredoka One', cursive;
+    color: #523b70;
+}
+
+#reset-btn {
+    font-family: 'Fredoka One', cursive;
+    background: #dd6aab;
+    color: #523b70;
+    padding: 6px 16px;
+    border-radius: 50px;
+    transition: transform 0.15s ease;
+}
+
+#reset-btn:hover {
+    transform: scale(1.05);
+
+}
+
+.split-arena {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 6px 1fr;
+    position: relative;
+}
+
+.world {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.day-world {
+    background-color: #5890da;
+    color: #272625;
+
+}
+
+.night-world {
+    background-color: #15162e;
+    color: #272625;
+
+}
+
+.rift-divider {
+    background: #37175c;
+    box-shadow: 0 0 18px #f472b6;
+    z-index: 5px;
+    
+}
+
+.world-label {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.2rem;
+    padding: 6px 18px;
+    border-radius: 50px;
+}
+
+.day-world .world-label {
+    background: #87bde9;
+    border: 2px solid #f1ab12;
+}
+
+.night-world .world-label {
+    background-color: #0b0c3a;
+    border: 2px solid #f472b6;
+    box-shadow: 0 0 12px rgba(244, 114, 182, 0.4);
+
+
+    
+}
+
+.grid-board {
+    display: grid;
+    grid-template-columns: repeat(5, 64px);
+    grid-template-rows: repeat(5, 64px);
+    gap: 8px;
+    padding: 14px;
+    border-radius: 24px;
+
+}
+
+.day-world .grid-board {
+    background: rgba(150, 52, 207, 0.8);
+    border: 3px solid #fcd34d;
+    box-shadow: 0 10px 25px rgba(245, 158, 11, 0.15);
+
+}
+
+.night-world .grid-board {
+    background: rgba(30, 27, 75, 0.85);
+    border: 3px solid #ec4899;
+    box-shadow: 0 10px 25px rgba(236, 72, 153, 0.25);
+
+}
+
+.cell {
+    width: 64px;
+    height: 64px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    position: relative;
+
+}
+
+.day-world .cell {
+    background: #b54ee6;
+}
+
+.night-world .cell {
+    background: #2e2a5b;
+}
+
+.night-world .wall {
+    background: #4c1d95;
+    border: 3px solid #f472b6;
+    box-shadow: inset 0 0 10px #ec4899;
+
+
+}
+
+.day-world .wall {
+    background: #d97706;
+    border: 3px solid #5f3419;
+    
+
+}
+
+.goal {
+    animation: pulse-goal 1.8s infinite ease-in-out;
+
+}
+
+@keyframes pulse-goal {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+}
+
+footer {
+    text-align: center;
+    padding: 12px;
+    background: #6c43b8;
+    color: #5a3985;
+    font-size: 0.95rem;
+    border-top:2px solid #62398d;
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 50;
+
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-card {
+    background: #8640c0;
+    padding: 32px;
+    border-radius: 28px;
+    text-align: center;
+    border: 4px solid #f472b6;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+
+.modal-card h2 {
+    font-family: 'Fredoka One', cursive;
+    color: #523b70;
+    margin-bottom: 10px;
+}
+
+.modal-card p {
+    color: #523b70;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+#next-btn {
+    font-family: 'Fredoka One', cursive;
+    background: #f472b6;
+    color: #e46565;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.gate {
+    background: rgba(244, 114, 182, 0.25);
+    border: 2px dashed #f472b6;
+    transition: opacity 0.2s ease;
+
+}
+
+.gate.open {
+    opacity: 0.2;
+}
+
+
+#undo-btn, #reset-btn {
+    font-family: 'Fredoka One', cursive;
+    color: #523b70;
+    border: 2px solid #523b70;
+    padding: 6px 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+
+
+
+}
+
+#undo-btn {
+    background: #e9df55;
+
+}
+
+#reset-btn {
+    background: #dd63a8;
+
+}
+
+#undo-btn:hover, #reset-btn:hover {
+    transform: scale(1.05);
+
+}
+
+.split-arena {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 6px 1fr;
+    position: relative;
+
+}
+
+.world {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+
+}
+
+.day-world {
+    background: #699deb;
+    color: #3b261a;
+    
+}
+
+.night-world {
+    background: #0c0333;
+    color: #f472b6;
+    
+}
+
+.rift-divider {
+    background: #e24d86;
+    box-shadow: 0 0 18px #eb3d97;
+    z-index: 5;
+
+}
+
+.world-label {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.2rem;
+    padding: 6px 18px;
+    border-radius: 50px;
+}
+
+.day-world .world-label {
+    background: #8948be;
+    border: 2px solid #f49e0b;
+
+    
+}
+
+.night-world .world-label {
+    background: #1e1b4b;
+    border: 2px solid #f472b6;
+    box-shadow: 0 0 12px rgba(244, 114, 182, 0.4);
+}
+
+.grid-board {
+    display: grid;
+    grid-template-columns: repeat(5, 64px);
+    grid-template-rows: repeat(5, 64px);
+    gap: 8px;
+    padding: 14px;
+    border-radius: 24px;
+}
+.day-world .grid-board {
+    background: rgba(193, 119, 223, 0.8);
+    border: 3px solid #fcd34d;
+    box-shadow: 0 10px 25px rgba(236, 72, 153, 0.25);
+}
+
+.cell {
+    width: 64px;
+    height: 64px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    position: relative;
+
+}
+
+.day-world .cell {
+    background: #6c3b9b;
+
+}
+
+.night-world .cell {
+    background: #2e2a5b;
+
+}
+
+.day-world .wall {
+    background: #d97706;
+    border: 3px solid #92400e;
+
+}
+
+.night-world .wall {
+    background: #4c1d95;
+    border: 3px solid #f472b6;
+    box-shadow: inset 0 0 10px #ec4899;
+
+}
+
+.gate {
+    background: rgba(244, 114, 182, 0.25) !important;
+    border: 2px dashed #f472b6;
+    transition: opacity 0.2s ease;
+}
+
+.gate.open {
+    opacity: 0.2;
+}
+
+.goal {
+    animation: pulse-goal 1.8s infinite ease-in-out;
+}
+
+#next-btn:hover {
+    transform: scale(1.05);
+}
